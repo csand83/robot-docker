@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM ubuntu:latest
 ENV FIREFOXBROWSER_VERSION 68.0.1
 ENV DEPS wget curl unzip
 
@@ -32,7 +32,9 @@ wait $ff' > /usr/bin/headless-firefox \
  && chmod a+x /usr/bin/headless-chrome \
  && chmod a+x /usr/bin/headless-firefox \
  ## Install robotFramework and deps
- && pip install --upgrade pip \
+ && python3 -m pip uninstall pip \ 
+ && apt install python3-pip --reinstall \
+ ## && pip install --upgrade pip \
  && pip install robotframework robotframework-seleniumlibrary robotframework-faker webdrivermanager \
  ## Download Browser Drivers
  && webdrivermanager firefox chrome --linkpath /usr/bin
