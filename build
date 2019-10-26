@@ -2,9 +2,9 @@
 IMAGE_NAME='robot-docker'
 VOLUME_NAME='robot-docker-volume'
 
-docker build -t $IMAGE_NAME .
+sudo docker build -t $IMAGE_NAME .
 build=$!
 wait $build
-docker run -d --name $VOLUME_NAME -v $(pwd):/robot --shm-size=1gb $IMAGE_NAME:latest
+sudo docker run -d --name $VOLUME_NAME -v $(pwd):/robot --shm-size=1gb $IMAGE_NAME:latest
 volume=$!
 wait $volume
